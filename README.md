@@ -24,23 +24,23 @@ The purpose of the app is to help individuals overview their spending to make be
 ## Wireframes:
 
 #### Home Page
-![Home Page](https://github.com/jonathanrhoads/budget-tracker/blob/main/images/home.jpg "Home Page")
+![Home Page](https://github.com/jonathanrhoads/budget-app/blob/main/images/home.jpg "Home Page")
 
 #### Purchases Page
-![Purchases Page](https://github.com/jonathanrhoads/budget-tracker/blob/main/images/purchase.jpg "Purchases Page")
+![Purchases Page](https://github.com/jonathanrhoads/budget-app/blob/main/images/purchase.jpg "Purchases Page")
 
 #### Spending List Page
-![Spending List](https://github.com/jonathanrhoads/budget-tracker/blob/main/images/spendingList.jpg "Spending List")
+![Spending List](https://github.com/jonathanrhoads/budget-app/blob/main/images/spendingList.jpg "Spending List")
 
 #### Spending Summary Page
-![Summary Page](https://github.com/jonathanrhoads/budget-tracker/blob/main/images/summary.jpg "Summary Page")
+![Summary Page](https://github.com/jonathanrhoads/budget-app/blob/main/images/summary.jpg "Summary Page")
 
 #### Budget Page
-![Budget Page](https://github.com/jonathanrhoads/budget-tracker/blob/main/images/budget.jpg "Budget Page")
+![Budget Page](https://github.com/jonathanrhoads/budget-app/blob/main/images/budget.jpg "Budget Page")
 
 
 ## Database Diagram
-![DB Diagram](https://github.com/jonathanrhoads/budget-tracker/blob/main/images/DBDiagram.jpg "DB Diagram")
+![DB Diagram](https://github.com/jonathanrhoads/budget-app/blob/main/images/DBDiagram.jpg "DB Diagram")
 
 
 ## User Stories
@@ -58,7 +58,7 @@ The purpose of the app is to help individuals overview their spending to make be
 6.	Given purchase information, when the user wants to see them all in a order, display the list of purchases.
 
 ## UML Diagram
-![UML Diagram](https://github.com/jonathanrhoads/budget-tracker/blob/main/images/uml.jpg "UML Diagram")
+![UML Diagram](https://github.com/jonathanrhoads/budget-app/blob/main/images/uml.jpg "UML Diagram")
 
 ## Requirements Table
 | Requirement ID | Requirement Description | Test Method | Test ID |
