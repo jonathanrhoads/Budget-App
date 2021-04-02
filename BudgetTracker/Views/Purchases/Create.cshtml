@@ -13,38 +13,53 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="CatId" class="control-label"></label>
-                <select asp-for="CatId" class ="form-control" asp-items="ViewBag.CatId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="PurchaseName" class="control-label"></label>
+                <label asp-for="PurchaseName" class="control-label">Purchase Name:</label>
                 <input asp-for="PurchaseName" class="form-control" />
                 <span asp-validation-for="PurchaseName" class="text-danger"></span>
             </div>
+
+
             <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
+                <label asp-for="Price" class="control-label">Price:</label>
                 <input asp-for="Price" class="form-control" />
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PaymentMethodId" class="control-label"></label>
-                <select asp-for="PaymentMethodId" class ="form-control" asp-items="ViewBag.PaymentMethodId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Note" class="control-label"></label>
-                <input asp-for="Note" class="form-control" />
-                <span asp-validation-for="Note" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Necessity" class="control-label"></label>
-                <input asp-for="Necessity" class="form-control" />
-                <span asp-validation-for="Necessity" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PurchaseDate" class="control-label"></label>
+                <label asp-for="PurchaseDate" class="control-label">Date:</label>
                 <input asp-for="PurchaseDate" class="form-control" />
                 <span asp-validation-for="PurchaseDate" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="CatId" class="control-label">Category:</label>
+                <select asp-for="CatId" class="form-control" asp-items="ViewBag.CatId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="PaymentMethodId" class="control-label">Payment Method:</label>
+                <select asp-for="PaymentMethodId" class="form-control" asp-items="ViewBag.PaymentMethodId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Necessity" class="control-label">Necessity:</label>
+                <div class="range range-info form-control col-xs-6 form-group">
+                    <input asp-for="Necessity" type="range" name="range" min="1" max="10" value="5" onchange="rangeInfo.value=value">
+                    <output id="rangeInfo">5</output>
+                    <span asp-validation-for="Note" class="text-danger"></span>
+                </div>
+
+                @*<label asp-for="Necessity" class="control-label">Necessity:</label>
+            <input asp-for="Necessity" class="form-control" />
+            <span asp-validation-for="Necessity" class="text-danger"></span>*@
+
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Note" class="control-label">Note:</label>
+                <textarea asp-for="Note" asp-validation-for="Note" id="textarea" class="materialize-textarea form-control" v-model="Note.text"></textarea>
+                @*<input asp-for="Note" class="form-control" />*@
+            <span asp-validation-for="Note" class="text-danger"></span>
+            </div>
+
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -53,7 +68,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Back to Spending List</a>
 </div>
 
 @section Scripts {
