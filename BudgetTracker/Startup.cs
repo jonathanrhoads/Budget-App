@@ -29,10 +29,8 @@ namespace BudgetTracker
         {
             services.AddControllersWithViews();
             services.AddDbContext<BudgetContext>(opts =>
-            {
                 opts.UseSqlServer(
-                    Configuration["ConnectionStrings:DbConnectionString"]);
-            });
+                    Configuration.GetConnectionString("DbConnectionString")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
