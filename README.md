@@ -24,7 +24,7 @@ The purpose of the app is to help individuals overview their spending to make be
 ## Wireframes:
 
 #### Home Page
-![Home Page](https://github.com/jonathanrhoads/budget-app/blob/main/images/home.jpg "Home Page")
+![Home Page](/images/home.jpg "Home Page")
 
 #### Purchases Page
 ![Purchases Page](https://github.com/jonathanrhoads/budget-app/blob/main/images/purchase.jpg "Purchases Page")
