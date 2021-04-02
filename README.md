@@ -99,3 +99,7 @@ The purpose of the app is to help individuals overview their spending to make be
 
 ![Database Diagram](/images/dbdiagram.jpg "Database Diagram")
 
+
+
+
+[Back To Top!](#budget-tracking-app)
