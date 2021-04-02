@@ -15,6 +15,7 @@
 6. [UML Diagram](#uml-diagram)
 7. [Requirements Table](#requirements-table)
 8. [Test Table](#test-table)
+9. [Database Diagram](#database-diagram)
 
 
 
@@ -93,4 +94,8 @@ The purpose of the app is to help individuals overview their spending to make be
 | 10      | 4			   | Log in and out | Not Tested     | 00-00-0000 | 0.1          |
 | 11      | 4.1			   | Unit Test/Manual verification | Not Tested     | 00-00-0000 | 0.1|
 
+
+## Database Diagram
+
+![Database Diagram](/images/dbdiagram.jpg "Database Diagram")
 
