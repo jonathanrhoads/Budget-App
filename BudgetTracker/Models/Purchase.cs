@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -11,11 +12,15 @@ namespace BudgetTracker.Models
         public int PurchaseId { get; set; }
 
         [DisplayName("Category")]
+        [DefaultValue("Other")]
         public int CatId { get; set; }
         [DisplayName("Purchase Name")]
+        [Required]
         public string PurchaseName { get; set; }
 
         [DisplayName("Price")]
+        [Required]
+        [Range(0, double.MaxValue, ErrorMessage = "You must enter a price greater than 0")]
         public decimal Price { get; set; }
 
 
@@ -25,9 +30,11 @@ namespace BudgetTracker.Models
         public string Note { get; set; }
 
         [DisplayName("Necessity")]
+        [Range(0, 10)]
         public int? Necessity { get; set; }
 
         [DisplayName("Date")]
+        [Required]
         public DateTime? PurchaseDate { get; set; }
 
         [DisplayName("Expense Category")]

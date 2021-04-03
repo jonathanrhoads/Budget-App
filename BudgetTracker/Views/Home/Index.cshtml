@@ -2,29 +2,47 @@
     ViewData["Title"] = "Home Page";
 }
 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Budget Tracker</title>
+
+    <style>
+        #get_a_grip_on_your_finances {
+            font-family: Montserrat;
+            font-style: normal;
+            font-weight: normal;
+            /*font-size: 25px;*/
+            color: rgba(112, 112, 112, 1);
+            letter-spacing: -0.4px;
+            text-transform: lowercase;
+        }
+
+        .text-center {
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #bk {
+            height: 100%;
+            width: 100%;
+            background-image: url(../../wwwroot/images/money.png);
+            your background image background-repeat: no-repeat;
+            we want to have one single image not a repeated one background-size: cover;
+            this sets the image to fullscreen covering the whole screen css hack for ie filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../wwwroot/images/money.png',sizingMethod='scale');
+            -ms-filter: "pro/*gid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../wwwroot/images/money.png',sizingMethod='scale')";
+        }
+    </style>
+    <meta name="viewport" content="width=device-width"/>
+</head>
+<body>
+    <div class="container-fluid bk">
+        @*<img styl src="~/images/money.png" class="img-fluid w-auto" alt="">*@
+        <div id="get_a_grip_on_your_finances" class="text-center">get a grip on your finances</div>
+    </div>
+</body>
+</html>
 
 
-<style>
-    #get_a_grip_on_your_finances {
-        font-family: Montserrat;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 25px;
-        color: rgba(112, 112, 112, 1);
-        letter-spacing: -0.4px;
-        text-transform: lowercase;
-    }
-
-    .text-center{
-        position: absolute;
-        top: 30%;
-        left:50%;
-        transform: translate(-50%, -50%);
-    }
-</style>
-
-
-<div class="container-fluid">
-    <img src="~/images/money.png" class="img-fluid w-auto" alt="">
-    <div id="get_a_grip_on_your_finances" class="text-center">get a grip on your finances</div>
-</div>
