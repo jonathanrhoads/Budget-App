@@ -12,8 +12,8 @@ namespace BudgetTracker.Models
         public int PurchaseId { get; set; }
 
         [DisplayName("Category")]
-        [DefaultValue("Other")]
         public int CatId { get; set; }
+
         [DisplayName("Purchase Name")]
         [Required]
         public string PurchaseName { get; set; }

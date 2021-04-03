@@ -1,21 +1,36 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    Layout = null;
+
 }
+
 
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Budget Tracker</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/fontawesome/css/all.css" rel="stylesheet" />
     <style>
+        .bgimg-1 {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-image: url("../../images/money.png");
+            min-height: 100%;
+        }
+
         #get_a_grip_on_your_finances {
             font-family: Montserrat;
             font-style: normal;
             font-weight: normal;
-            /*font-size: 25px;*/
             color: rgba(112, 112, 112, 1);
             letter-spacing: -0.4px;
             text-transform: lowercase;
+            margin-top: auto;
         }
 
         .text-center {
@@ -24,25 +39,59 @@
             left: 50%;
             transform: translate(-50%, -50%);
         }
-
-        #bk {
-            height: 100%;
-            width: 100%;
-            background-image: url(../../wwwroot/images/money.png);
-            your background image background-repeat: no-repeat;
-            we want to have one single image not a repeated one background-size: cover;
-            this sets the image to fullscreen covering the whole screen css hack for ie filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../wwwroot/images/money.png',sizingMethod='scale');
-            -ms-filter: "pro/*gid:DXImageTransform.Microsoft.AlphaImageLoader(src='../../wwwroot/images/money.png',sizingMethod='scale')";
-        }
     </style>
-    <meta name="viewport" content="width=device-width"/>
 </head>
-<body>
-    <div class="container-fluid bk">
-        @*<img styl src="~/images/money.png" class="img-fluid w-auto" alt="">*@
-        <div id="get_a_grip_on_your_finances" class="text-center">get a grip on your finances</div>
-    </div>
+<body class="bgimg-1">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light ">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BudgetTracker</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Purchases" asp-action="Create">Input Purchase</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Purchases" asp-action="Index">Spending List</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Summary" asp-action="Index">Summary</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Budget" asp-action="Index">Budget</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div id="get_a_grip_on_your_finances" class="text-center">get a grip on your finances</div>
+    <footer class="footer text-muted">
+        <div class="container">
+            &copy; 2021 - BudgetTracker - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

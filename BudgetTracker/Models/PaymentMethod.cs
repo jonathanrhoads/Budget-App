@@ -14,6 +14,7 @@ namespace BudgetTracker.Models
         }
 
         public int PaymentMethodId { get; set; }
+
         [DisplayName("Payment Method")]
         public string PaymentMethodName { get; set; }
 
