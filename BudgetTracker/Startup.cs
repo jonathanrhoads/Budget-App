@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using BudgetTracker.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
-
+using Microsoft.AspNetCore.Identity;
 
 namespace BudgetTracker
 {
@@ -31,6 +31,8 @@ namespace BudgetTracker
             services.AddDbContext<BudgetContext>(opts =>
                 opts.UseSqlServer(
                     Configuration.GetConnectionString("DbConnectionString")));
+            services.AddDefaultIdentity<IdentityUser>()
+                .AddEntityFrameworkStores<BudgetContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,11 +53,12 @@ namespace BudgetTracker
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
-
+            
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapRazorPages();
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
