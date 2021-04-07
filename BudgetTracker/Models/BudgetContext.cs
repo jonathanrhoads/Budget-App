@@ -23,7 +23,7 @@ namespace BudgetTracker.Models
         public virtual DbSet<PaymentMethod> PaymentMethods { get; set; }
         public virtual DbSet<Purchase> Purchases { get; set; }
         public virtual DbSet<Subcat> Subcats { get; set; }
-        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<ApplicationUser> ApplicationUser { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -65,7 +65,7 @@ namespace BudgetTracker.Models
 
                 entity.Property(e => e.SubcatId).HasColumnName("SubcatID");
 
-                entity.Property(e => e.UserId).HasColumnName("UserID");
+                // entity.Property(e => e.UserId).HasColumnName("UserID");
 
                 entity.HasOne(d => d.Subcat)
                     .WithMany()
@@ -73,10 +73,10 @@ namespace BudgetTracker.Models
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Subcats_MonthlyCosts_SubcatID");
 
-                entity.HasOne(d => d.User)
-                    .WithMany()
-                    .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK_Users_MonthlyCosts_UserID");
+                //entity.HasOne(d => d.ApplicationUser)
+                //    .WithMany()
+                //    .HasForeignKey(d => d.UserId)
+                //    .HasConstraintName("FK_Users_MonthlyCosts_UserID");
             });
 
             modelBuilder.Entity<PaymentMethod>(entity =>
@@ -136,17 +136,14 @@ namespace BudgetTracker.Models
                     .HasConstraintName("FK_ExpenseCategory_Subcats_CatID");
             });
 
-            modelBuilder.Entity<User>(entity =>
+            modelBuilder.Entity<ApplicationUser>(entity =>
             {
-                entity.Property(e => e.UserId).HasColumnName("UserID");
+               
 
                 entity.Property(e => e.UserIncome1).HasColumnType("decimal(19, 4)");
 
                 entity.Property(e => e.UserIncome2).HasColumnType("decimal(19, 4)");
 
-                entity.Property(e => e.UserName)
-                    .IsRequired()
-                    .HasMaxLength(50);
             });
 
             OnModelCreatingPartial(modelBuilder);

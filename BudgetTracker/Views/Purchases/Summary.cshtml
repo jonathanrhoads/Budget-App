@@ -1,0 +1,43 @@
+﻿@model IEnumerable<BudgetTracker.Models.Purchase>
+
+@{
+    ViewData["Title"] = "Summary";
+}
+
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load("current", { packages: ["corechart"] });
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+
+            $.ajax({
+                type: "POST",
+                url: "/Purchases/AjaxMethod",
+                data: '{}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (r) {
+                    var data = new google.visualization.DataTable(r);
+
+                    var options = {
+                        title: 'Spending by Category',
+                        is3D: true,
+                    };
+
+                    var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+                    chart.draw(data, options);
+                },
+                failure: function (r) {
+                    alert(r.d);
+                },
+                error: function (r) {
+                    alert(r.d);
+                }
+            });
+        }
+    </script>
+
+    <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+
+

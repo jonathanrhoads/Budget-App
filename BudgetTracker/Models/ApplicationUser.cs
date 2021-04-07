@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace BudgetTracker.Models
 {
-    public partial class User : IdentityUser
+    public partial class ApplicationUser : IdentityUser
     {
         // public int UserId { get; set; } // Identity already creates an ID
         // public string UserName { get; set; } // Commenting out because it hides Identity<>.Username

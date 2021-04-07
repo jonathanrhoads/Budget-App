@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BudgetTracker.Models;
+using Google.DataTable.Net.Wrapper.Extension;
+using Google.DataTable.Net.Wrapper;
 
 namespace BudgetTracker.Controllers
 {
@@ -16,6 +18,27 @@ namespace BudgetTracker.Controllers
         public PurchasesController(BudgetContext context)
         {
             _context = context;
+        }
+
+        public async Task<IActionResult> Summary()
+        {
+            var budgetContext = _context.Purchases.Include(p => p.Cat).Include(p => p.PaymentMethod);
+            return View(await budgetContext.ToListAsync());
+        }
+
+        [HttpPost]
+        public JsonResult AjaxMethod()
+        {
+            var budgetContext = _context.Purchases.Include(p => p.Cat).Include(p => p.PaymentMethod);
+
+            var list = budgetContext.ToList();
+            var json = list.ToGoogleDataTable()
+               .NewColumn(new Column(ColumnType.String, "Category"), x => x.Cat.CategoryName)
+               .NewColumn(new Column(ColumnType.Number, "Price"), x => x.Price)
+               .Build()
+               .GetJson();
+                
+            return Json(json);
         }
 
         // GET: Purchases
