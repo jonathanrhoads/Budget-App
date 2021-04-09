@@ -20,26 +20,7 @@ namespace BudgetTracker.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Summary()
-        {
-            var budgetContext = _context.Purchases.Include(p => p.Cat).Include(p => p.PaymentMethod);
-            return View(await budgetContext.ToListAsync());
-        }
-
-        [HttpPost]
-        public JsonResult AjaxMethod()
-        {
-            var budgetContext = _context.Purchases.Include(p => p.Cat).Include(p => p.PaymentMethod);
-
-            var list = budgetContext.ToList();
-            var json = list.ToGoogleDataTable()
-               .NewColumn(new Column(ColumnType.String, "Category"), x => x.Cat.CategoryName)
-               .NewColumn(new Column(ColumnType.Number, "Price"), x => x.Price)
-               .Build()
-               .GetJson();
-                
-            return Json(json);
-        }
+        
 
         // GET: Purchases
         public async Task<IActionResult> Index()
@@ -180,9 +161,33 @@ namespace BudgetTracker.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+
         private bool PurchaseExists(int id)
         {
             return _context.Purchases.Any(e => e.PurchaseId == id);
         }
+
+        [HttpPost]
+        public JsonResult AjaxMethod()
+        {
+            var budgetContext = _context.Purchases.Include(p => p.Cat).Include(p => p.PaymentMethod);
+
+            var list = budgetContext.ToList();
+            var json = list.ToGoogleDataTable()
+               .NewColumn(new Column(ColumnType.String, "Category"), x => x.Cat.CategoryName)
+               .NewColumn(new Column(ColumnType.Number, "Price"), x => x.Price)
+               .Build()
+               .GetJson();
+
+            return Json(json);
+        }
+
+        public ViewResult Summary()
+        {
+            
+            return View();
+        }
+
+        
     }
 }
