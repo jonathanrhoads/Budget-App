@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using BudgetTracker.Models;
 using Google.DataTable.Net.Wrapper.Extension;
 using Google.DataTable.Net.Wrapper;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace BudgetTracker.Controllers
 {
@@ -25,7 +27,14 @@ namespace BudgetTracker.Controllers
         // GET: Purchases
         public async Task<IActionResult> Index()
         {
-            var budgetContext = _context.Purchases.Include(p => p.Cat).Include(p => p.PaymentMethod);
+            var user = _context.Users
+                .FirstOrDefault(u => u.UserName == HttpContext.User.Identity.Name);
+            
+
+            var budgetContext = _context.Purchases
+                .Where(p => p.UserId == user.Id)
+                .Include(p => p.Cat)
+                .Include(p => p.PaymentMethod);
             return View(await budgetContext.ToListAsync());
         }
 

@@ -65,7 +65,7 @@ namespace BudgetTracker.Models
 
                 entity.Property(e => e.SubcatId).HasColumnName("SubcatID");
 
-                // entity.Property(e => e.UserId).HasColumnName("UserID");
+                entity.Property(e => e.UserId).HasColumnName("UserID");
 
                 entity.HasOne(d => d.Subcat)
                     .WithMany()
@@ -73,10 +73,10 @@ namespace BudgetTracker.Models
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Subcats_MonthlyCosts_SubcatID");
 
-                //entity.HasOne(d => d.ApplicationUser)
-                //    .WithMany()
-                //    .HasForeignKey(d => d.UserId)
-                //    .HasConstraintName("FK_Users_MonthlyCosts_UserID");
+                entity.HasOne(d => d.ApplicationUser)
+                    .WithMany()
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK_Users_MonthlyCosts_UserID");
             });
 
             modelBuilder.Entity<PaymentMethod>(entity =>

@@ -1,4 +1,5 @@
 ﻿using BudgetTracker.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -18,6 +19,8 @@ namespace BudgetTracker.Controllers
             _logger = logger;
         }
 
+        // TODO : Index should be the only page viewable without authorization
+        //[AllowAnonymous]
         public IActionResult Index()
         {
             return View();

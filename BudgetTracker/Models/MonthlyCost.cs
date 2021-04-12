@@ -7,7 +7,8 @@ namespace BudgetTracker.Models
 {
     public partial class MonthlyCost
     {
-        // public int? UserId { get; set; }
+        public string UserId { get; set; } //changed to string
+
         public int SubcatId { get; set; }
         public decimal? ProjectedCost { get; set; }
         public decimal? ActualCost { get; set; }
@@ -15,6 +16,6 @@ namespace BudgetTracker.Models
 
         public virtual Subcat Subcat { get; set; }
 
-        // public virtual ApplicationUser ApplicationUser { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
     }
 }

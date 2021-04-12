@@ -23,7 +23,7 @@ namespace BudgetTracker.Models
         [Range(0, double.MaxValue, ErrorMessage = "You must enter a price greater than 0")]
         public decimal Price { get; set; }
 
-
+        public string UserId { get; set; }
         public int? PaymentMethodId { get; set; }
 
         [DisplayName("Note")]
@@ -42,5 +42,7 @@ namespace BudgetTracker.Models
 
         [DisplayName("Payment Method")]
         public virtual PaymentMethod PaymentMethod { get; set; }
+
+        
     }
 }

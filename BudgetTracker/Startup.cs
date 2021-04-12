@@ -12,6 +12,8 @@ using BudgetTracker.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BudgetTracker
 {
@@ -33,6 +35,14 @@ namespace BudgetTracker
                     Configuration.GetConnectionString("DbConnectionString")));
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<BudgetContext>();
+            // TODO: Ensure users log in
+            //services.AddAuthorization(options =>
+            //{
+            //    options.FallbackPolicy = new AuthorizationPolicyBuilder()
+            //        .RequireAuthenticatedUser()
+            //        .Build();
+            //});
+            services.AddAuthentication();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
