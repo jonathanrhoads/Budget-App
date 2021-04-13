@@ -30,19 +30,26 @@ namespace BudgetTracker
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddRazorPages();
             services.AddDbContext<BudgetContext>(opts =>
                 opts.UseSqlServer(
                     Configuration.GetConnectionString("DbConnectionString")));
+
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<BudgetContext>();
-            // TODO: Ensure users log in
-            //services.AddAuthorization(options =>
-            //{
-            //    options.FallbackPolicy = new AuthorizationPolicyBuilder()
-            //        .RequireAuthenticatedUser()
-            //        .Build();
-            //});
+
+
+            // TODO: Ensure user logs in
+            services.AddAuthorization(options =>
+            {
+                options.FallbackPolicy = new AuthorizationPolicyBuilder()
+                    .RequireAuthenticatedUser()
+                    .Build();
+            });
+
+            services.AddHttpContextAccessor();
             services.AddAuthentication();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

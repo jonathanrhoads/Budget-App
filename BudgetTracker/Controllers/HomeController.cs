@@ -19,8 +19,8 @@ namespace BudgetTracker.Controllers
             _logger = logger;
         }
 
-        // TODO : Index should be the only page viewable without authorization
-        //[AllowAnonymous]
+        
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View();

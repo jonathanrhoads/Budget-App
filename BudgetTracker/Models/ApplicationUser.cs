@@ -8,9 +8,8 @@ namespace BudgetTracker.Models
 {
     public partial class ApplicationUser : IdentityUser
     {
-        public int UserId { get; set; } 
-
-        //public string UserName { get; set; } // Commenting out because it hides Identity<>.Username
+        // public int UserId { get; set; }
+        // public string UserName { get; set; } 
         public decimal? UserIncome1 { get; set; }
         public decimal? UserIncome2 { get; set; }
     }

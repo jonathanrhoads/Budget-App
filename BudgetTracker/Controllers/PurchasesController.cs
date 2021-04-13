@@ -10,16 +10,19 @@ using Google.DataTable.Net.Wrapper.Extension;
 using Google.DataTable.Net.Wrapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace BudgetTracker.Controllers
 {
     public class PurchasesController : Controller
     {
         private readonly BudgetContext _context;
+        
 
         public PurchasesController(BudgetContext context)
         {
             _context = context;
+            
         }
 
         
@@ -27,12 +30,12 @@ namespace BudgetTracker.Controllers
         // GET: Purchases
         public async Task<IActionResult> Index()
         {
-            var user = _context.Users
-                .FirstOrDefault(u => u.UserName == HttpContext.User.Identity.Name);
             
+            var user = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
+            
             var budgetContext = _context.Purchases
-                .Where(p => p.UserId == user.Id)
+                .Where(p => p.UserId == user)
                 .Include(p => p.Cat)
                 .Include(p => p.PaymentMethod);
             return View(await budgetContext.ToListAsync());
@@ -71,10 +74,12 @@ namespace BudgetTracker.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PurchaseId,CatId,PurchaseName,Price,PaymentMethodId,Note,Necessity,PurchaseDate")] Purchase purchase)
+        public async Task<IActionResult> Create([Bind("PurchaseId,CatId,PurchaseName,Price,PaymentMethodId,Note,Necessity,PurchaseDate, UserId")] Purchase purchase)
         {
+            purchase.UserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             if (ModelState.IsValid)
             {
+                
                 _context.Add(purchase);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -118,6 +123,7 @@ namespace BudgetTracker.Controllers
             {
                 try
                 {
+                    purchase.UserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
                     _context.Update(purchase);
                     await _context.SaveChangesAsync();
                 }
