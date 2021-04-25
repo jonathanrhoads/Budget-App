@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -7,6 +9,8 @@ namespace BudgetTracker.Models
 {
     public partial class MonthlyCost
     {
+        
+        public int MonthlyCostId { get; set; }
         public int SubcatId { get; set; }
         public decimal? ProjectedCost { get; set; }
         public decimal? ActualCost { get; set; }
@@ -16,6 +20,6 @@ namespace BudgetTracker.Models
 
         public virtual ApplicationUser ApplicationUser { get; set; }
         public virtual Subcat Subcat { get; set; }
-        // public virtual AspNetUser User { get; set; }
+        
     }
 }

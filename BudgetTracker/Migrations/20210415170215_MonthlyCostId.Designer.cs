@@ -4,14 +4,16 @@ using BudgetTracker.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BudgetTracker.Migrations
 {
     [DbContext(typeof(BudgetContext))]
-    partial class BudgetContextModelSnapshot : ModelSnapshot
+    [Migration("20210415170215_MonthlyCostId")]
+    partial class MonthlyCostId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,9 +48,6 @@ namespace BudgetTracker.Migrations
 
                     b.Property<decimal?>("Difference")
                         .HasColumnType("decimal(19,4)");
-
-                    b.Property<int>("MonthlyCostId")
-                        .HasColumnType("int");
 
                     b.Property<decimal?>("ProjectedCost")
                         .HasColumnType("decimal(19,4)");

@@ -22,18 +22,13 @@ namespace BudgetTracker.Controllers
         public PurchasesController(BudgetContext context)
         {
             _context = context;
-            
         }
-
-        
 
         // GET: Purchases
         public async Task<IActionResult> Index()
-        {
-            
+        {       
             var user = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            
             var budgetContext = _context.Purchases
                 .Where(p => p.UserId == user)
                 .Include(p => p.Cat)
@@ -76,10 +71,10 @@ namespace BudgetTracker.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("PurchaseId,CatId,PurchaseName,Price,PaymentMethodId,Note,Necessity,PurchaseDate, UserId")] Purchase purchase)
         {
-            purchase.UserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            
             if (ModelState.IsValid)
             {
-                
+                purchase.UserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
                 _context.Add(purchase);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

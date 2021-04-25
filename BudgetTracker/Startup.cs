@@ -39,7 +39,7 @@ namespace BudgetTracker
                 .AddEntityFrameworkStores<BudgetContext>();
 
 
-            // TODO: Ensure user logs in
+            
             services.AddAuthorization(options =>
             {
                 options.FallbackPolicy = new AuthorizationPolicyBuilder()
