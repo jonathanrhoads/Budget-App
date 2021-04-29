@@ -21,18 +21,6 @@ namespace BudgetTracker.Controllers
             _context = context;
         }
         
-        // GET: MonthlyCosts
-        public async Task<IActionResult> BudgetUpdate([Bind("SubcatId,ProjectedCost,ActualCost,Difference,UserId")] MonthlyCost monthlyCost)
-        {
-            var user = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-
-            var budgetContext = _context.MonthlyCosts
-                .Where(p => p.UserId == user)
-                .Include(p => p.Subcat)
-                .Include(p => p.Subcat.Cat);
-            return View(monthlyCost);
-        }
-
         // GET: MonthlyCosts/Create
         public async Task<IActionResult> Create()
         {
@@ -41,7 +29,7 @@ namespace BudgetTracker.Controllers
             var budgetContext = _context.MonthlyCosts
                 .Where(p => p.UserId == user)
                 .Include(p => p.Subcat)
-                .Include(p => p.Subcat.Cat);
+                .Include(p => p.Cat);
             
             return View(await budgetContext.ToListAsync());
         }
@@ -49,7 +37,7 @@ namespace BudgetTracker.Controllers
         // POST: MonthlyCosts/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("SubcatId,ProjectedCost,ActualCost,Difference,UserId")] MonthlyCost monthlyCost)
+        public async Task<IActionResult> Create([Bind("SubcatId,ProjectedCost,ActualCost,Difference,UserId,CatId")] MonthlyCost monthlyCost)
         {
             
             if (ModelState.IsValid)
@@ -59,8 +47,10 @@ namespace BudgetTracker.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Create));
             }
+            //ViewBag.Category = new List<ExpenseCategory>(_context.ExpenseCategories);
+            
             ViewData["SubcatId"] = new SelectList(_context.Subcats, "SubcatId", "SubcatName", monthlyCost.SubcatId);
-            ViewData["CatId"] = new SelectList(_context.ExpenseCategories, "CatId", "CategoryName", monthlyCost.Subcat.CatId);
+            ViewData["CatId"] = new SelectList(_context.ExpenseCategories, "CatId", "CategoryName", monthlyCost.CatId);
             return View(monthlyCost);
         }
 
