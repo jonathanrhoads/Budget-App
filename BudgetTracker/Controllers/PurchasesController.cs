@@ -180,7 +180,11 @@ namespace BudgetTracker.Controllers
         [HttpPost]
         public JsonResult AjaxMethod()
         {
-            var budgetContext = _context.Purchases.Include(p => p.Cat).Include(p => p.PaymentMethod);
+            var user = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            var budgetContext = _context.Purchases
+                .Where(p => p.UserId == user)
+                .Include(p => p.Cat).Include(p => p.PaymentMethod);
 
             var list = budgetContext.ToList();
             var json = list.ToGoogleDataTable()

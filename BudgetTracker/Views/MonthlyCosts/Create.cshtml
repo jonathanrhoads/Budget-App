@@ -15,12 +15,6 @@
         font-size: 15px;
     }
 
-    a {
-        text-decoration: none;
-        color: #0062cc;
-        border-bottom: 2px solid #0062cc;
-    }
-
     .box {
         padding: 60px 0px;
     }
@@ -36,278 +30,424 @@
         margin: 20px 0px;
     }
 
-    .fa {
-        color: #4183D7;
+    .fas {
+        color: #808080;
     }
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="box">
     <div class="container">
-        <div class="row">
+        <form asp-controller="MonthlyCosts" asp-action="Create" method="post">
+            <div class="row">
 
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 
-                <div class="box-part text-center">
+                    <div class="box-part text-center">
 
 
-                    <i class="fas fa-house-user fa-3x" aria-hidden="true"></i>
+                        <i class="fas fa-house-user fa-3x" aria-hidden="true"></i>
 
-                    <div class="title">
-                        <h4>Housing</h4>
+                        <div class="title">
+                            <h4>Housing</h4>
+                        </div>
+                        @{
+
+                            var cat = Model
+                                .Where(x => x.Subcat.CatId == 1)
+                                .ToList();
+
+                            for (int i = 0; i < cat.Count; i++)
+                            {
+                                <div class="form-group">
+                                    <label asp-for="@Model" class="control-label">@cat[i].Subcat.SubcatName</label>
+                                    <input asp-for="@cat[i].ActualCost" class="form-control" />
+
+                                </div>
+                                
+                            }
+
+                        }
+
                     </div>
-
-                    <div class="text">
-                        <span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam. Assum decore te sed. Elitr scripta ocurreret qui ad.</span>
-                    </div>
-
-                    @*<a href="#">Add New Subcategory</a>*@
-
                 </div>
-            </div>
 
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 
-                <div class="box-part text-center">
+                    <div class="box-part text-center">
 
 
-                    <i class="fas fa-car fa-3x" aria-hidden="true"></i>
+                        <i class="fas fa-car fa-3x" aria-hidden="true"></i>
 
-                    <div class="title">
-                        <h4>Transportation</h4>
+                        <div class="title">
+                            <h4>Transportation</h4>
+                        </div>
+
+                        @{
+
+                            var transportation = Model
+                                .Where(x => x.Subcat.CatId == 2)
+                                .ToList();
+
+                            for (int i = 0; i < transportation.Count; i++)
+                            {
+                                <div class="form-group">
+                                    <label asp-for="@transportation[i].SubcatId" class="control-label">@transportation[i].Subcat.SubcatName</label>
+                                    <input asp-for="@transportation[i].ActualCost" class="form-control" />
+
+                                </div>
+
+                            }
+
+                        }
+
+
+
                     </div>
-
-                    <div class="text">
-                        <span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam. Assum decore te sed. Elitr scripta ocurreret qui ad.</span>
-                    </div>
-
-                    @*<a href="#">Add New Subcategory</a>*@
-
                 </div>
-            </div>
 
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 
-                <div class="box-part text-center">
+                    <div class="box-part text-center">
 
 
-                    <i class="fas fa-house-damage fa-3x" aria-hidden="true"></i>
+                        <i class="fas fa-house-damage fa-3x" aria-hidden="true"></i>
 
-                    <div class="title">
-                        <h4>Insurance</h4>
+                        <div class="title">
+                            <h4>Insurance</h4>
+                        </div>
+
+                        @{
+
+                            var insurance = Model
+                                .Where(x => x.Subcat.CatId == 3)
+                                .ToList();
+
+                            for (int i = 0; i < transportation.Count; i++)
+                            {
+                                <div class="form-group">
+                                    <label asp-for="@insurance[i].SubcatId" class="control-label">@insurance[i].Subcat.SubcatName</label>
+                                    <input asp-for="@insurance[i].ActualCost" class="form-control" />
+
+                                </div>
+
+                            }
+
+                        }
+
+
+
                     </div>
-
-                    <div class="text">
-                        <span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam. Assum decore te sed. Elitr scripta ocurreret qui ad.</span>
-                    </div>
-
-                    @*<a href="#">Add New Subcategory</a>*@
-
                 </div>
-            </div>
 
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 
-                <div class="box-part text-center">
+                    <div class="box-part text-center">
 
 
-                    <i class="fas fa-utensils fa-3x" aria-hidden="true"></i>
+                        <i class="fas fa-utensils fa-3x" aria-hidden="true"></i>
 
-                    <div class="title">
-                        <h4>Food</h4>
+                        <div class="title">
+                            <h4>Food</h4>
+                        </div>
+
+                        @{
+
+                            var food = Model
+                                .Where(x => x.Subcat.CatId == 4)
+                                .ToList();
+
+                            for (int i = 0; i < food.Count; i++)
+                            {
+                                <div class="form-group">
+                                    <label asp-for="@food[i].SubcatId" class="control-label">@food[i].Subcat.SubcatName</label>
+                                    <input asp-for="@food[i].ActualCost" class="form-control" />
+
+                                </div>
+
+                            }
+
+                        }
+
+
+
                     </div>
-
-                    <div class="text">
-                        <span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam. Assum decore te sed. Elitr scripta ocurreret qui ad.</span>
-                    </div>
-
-                    @*<a href="#">Add New Subcategory</a>*@
-
                 </div>
-            </div>
 
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 
-                <div class="box-part text-center">
+                    <div class="box-part text-center">
 
 
-                    <i class="fas fa-baby fa-3x" aria-hidden="true"></i>
+                        <i class="fas fa-baby fa-3x" aria-hidden="true"></i>
 
-                    <div class="title">
-                        <h4>Children</h4>
+                        <div class="title">
+                            <h4>Children</h4>
+                        </div>
+
+                        @{
+
+                            var children = Model
+                                .Where(x => x.Subcat.CatId == 5)
+                                .ToList();
+
+                            for (int i = 0; i < children.Count; i++)
+                            {
+                                <div class="form-group">
+                                    <label asp-for="@children[i].SubcatId" class="control-label">@children[i].Subcat.SubcatName</label>
+                                    <input asp-for="@children[i].ActualCost" class="form-control" />
+
+                                </div>
+
+                            }
+
+                        }
+
+
+
                     </div>
-
-                    <div class="text">
-                        <span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam. Assum decore te sed. Elitr scripta ocurreret qui ad.</span>
-                    </div>
-
-                    @*<a href="#">Add New Subcategory</a>*@
-
                 </div>
-            </div>
 
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 
-                <div class="box-part text-center">
+                    <div class="box-part text-center">
 
 
-                    <i class="fas fa-tshirt fa-3x" aria-hidden="true"></i>
+                        <i class="fas fa-tshirt fa-3x" aria-hidden="true"></i>
 
-                    <div class="title">
-                        <h4>Personal Care</h4>
+                        <div class="title">
+                            <h4>Personal Care</h4>
+                        </div>
+
+                        @{
+
+                            var personalcare = Model
+                                .Where(x => x.Subcat.CatId == 6)
+                                .ToList();
+
+                            for (int i = 0; i < personalcare.Count; i++)
+                            {
+                                <div class="form-group">
+                                    <label asp-for="@personalcare[i].SubcatId" class="control-label">@personalcare[i].Subcat.SubcatName</label>
+                                    <input asp-for="@personalcare[i].ActualCost" class="form-control" />
+
+                                </div>
+
+                            }
+
+                        }
+
+
                     </div>
-
-                    <div class="text">
-                        <span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam. Assum decore te sed. Elitr scripta ocurreret qui ad.</span>
-                    </div>
-
-                    @*<a href="#">Add New Subcategory</a>*@
-
                 </div>
-            </div>
 
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 
-                <div class="box-part text-center">
+                    <div class="box-part text-center">
 
 
-                    <i class="fas fa-glass-cheers fa-3x" aria-hidden="true"></i>
+                        <i class="fas fa-glass-cheers fa-3x" aria-hidden="true"></i>
 
-                    <div class="title">
-                        <h4>Entertainment</h4>
+                        <div class="title">
+                            <h4>Entertainment</h4>
+                        </div>
+
+                        @{
+
+                            var entertainment = Model
+                                .Where(x => x.Subcat.CatId == 7)
+                                .ToList();
+
+                            for (int i = 0; i < entertainment.Count; i++)
+                            {
+                                <div class="form-group">
+                                    <label asp-for="@entertainment[i].SubcatId" class="control-label">@entertainment[i].Subcat.SubcatName</label>
+                                    <input asp-for="@entertainment[i].ActualCost" class="form-control" />
+
+                                </div>
+
+                            }
+
+                        }
+
+
+
                     </div>
-
-                    <div class="text">
-                        <span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam. Assum decore te sed. Elitr scripta ocurreret qui ad.</span>
-                    </div>
-
-                    @*<a href="#">Add New Subcategory</a>*@
-
                 </div>
-            </div>
 
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 
-                <div class="box-part text-center">
+                    <div class="box-part text-center">
 
 
-                    <i class="fas fa-money-check-alt fa-3x" aria-hidden="true"></i>
+                        <i class="fas fa-money-check-alt fa-3x" aria-hidden="true"></i>
 
-                    <div class="title">
-                        <h4>Loans</h4>
+                        <div class="title">
+                            <h4>Loans</h4>
+                        </div>
+
+                        @{
+
+                            var loans = Model
+                                .Where(x => x.Subcat.CatId == 8)
+                                .ToList();
+
+                            for (int i = 0; i < loans.Count; i++)
+                            {
+                                <div class="form-group">
+                                    <label asp-for="@loans[i].SubcatId" class="control-label">@loans[i].Subcat.SubcatName</label>
+                                    <input asp-for="@loans[i].ActualCost" class="form-control" />
+
+                                </div>
+
+                            }
+
+                        }
+
+
                     </div>
-
-                    <div class="text">
-                        <span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam. Assum decore te sed. Elitr scripta ocurreret qui ad.</span>
-                    </div>
-
-                    @*<a href="#">Add New Subcategory</a>*@
-
                 </div>
-            </div>
 
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 
-                <div class="box-part text-center">
+                    <div class="box-part text-center">
 
 
-                    <i class="fas fa-receipt fa-3x" aria-hidden="true"></i>
+                        <i class="fas fa-receipt fa-3x" aria-hidden="true"></i>
 
-                    <div class="title">
-                        <h4>Taxes</h4>
+                        <div class="title">
+                            <h4>Taxes</h4>
+                        </div>
+
+                        @{
+
+                            var taxes = Model
+                                .Where(x => x.Subcat.CatId == 9)
+                                .ToList();
+
+                            for (int i = 0; i < taxes.Count; i++)
+                            {
+                                <div class="form-group">
+                                    <label asp-for="@taxes[i].SubcatId" class="control-label">@taxes[i].Subcat.SubcatName</label>
+                                    <input asp-for="@taxes[i].ActualCost" class="form-control" />
+
+                                </div>
+
+                            }
+
+                        }
+
+
+
                     </div>
-
-                    <div class="text">
-                        <span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam. Assum decore te sed. Elitr scripta ocurreret qui ad.</span>
-                    </div>
-
-                    @*<a href="#">Add New Subcategory</a>*@
-
                 </div>
-            </div>
 
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 
-                <div class="box-part text-center">
+                    <div class="box-part text-center">
 
 
-                    <i class="fas fa-wallet fa-3x" aria-hidden="true"></i>
+                        <i class="fas fa-wallet fa-3x" aria-hidden="true"></i>
 
-                    <div class="title">
-                        <h4>Savings and Investments</h4>
+                        <div class="title">
+                            <h4>Savings and Investments</h4>
+                        </div>
+
+                        @{
+
+                            var savingsandinvestments = Model
+                                .Where(x => x.Subcat.CatId == 10)
+                                .ToList();
+
+                            for (int i = 0; i < savingsandinvestments.Count; i++)
+                            {
+                                <div class="form-group">
+                                    <label asp-for="@savingsandinvestments[i].SubcatId" class="control-label">@savingsandinvestments[i].Subcat.SubcatName</label>
+                                    <input asp-for="@savingsandinvestments[i].ActualCost" class="form-control" />
+
+                                </div>
+
+                            }
+
+                        }
+
+
+
                     </div>
-
-                    <div class="text">
-                        <span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam. Assum decore te sed. Elitr scripta ocurreret qui ad.</span>
-                    </div>
-
-                    @*<a href="#">Add New Subcategory</a>*@
-
                 </div>
-            </div>
 
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 
-                <div class="box-part text-center">
+                    <div class="box-part text-center">
 
 
-                    <i class="fas fa-gift fa-3x" aria-hidden="true"></i>
+                        <i class="fas fa-gift fa-3x" aria-hidden="true"></i>
 
-                    <div class="title">
-                        <h4>Gifts and Donations</h4>
+                        <div class="title">
+                            <h4>Gifts and Donations</h4>
+                        </div>
+
+                        @{
+
+                            var giftsanddonations = Model
+                                .Where(x => x.Subcat.CatId == 11)
+                                .ToList();
+
+                            for (int i = 0; i < giftsanddonations.Count; i++)
+                            {
+                                <div class="form-group">
+                                    <label asp-for="@giftsanddonations[i].SubcatId" class="control-label">@giftsanddonations[i].Subcat.SubcatName</label>
+                                    <input asp-for="@giftsanddonations[i].ActualCost" class="form-control" />
+
+                                </div>
+
+                            }
+
+                        }
+
+
                     </div>
-
-                    <div class="text">
-                        <span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam. Assum decore te sed. Elitr scripta ocurreret qui ad.</span>
-                    </div>
-
-                    @*<a href="#">Add New Subcategory</a>*@
-
                 </div>
-            </div>
 
 
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 
-                <div class="box-part text-center">
+                    <div class="box-part text-center">
 
 
-                    <i class="fas fa-balance-scale-right fa-3x" aria-hidden="true"></i>
+                        <i class="fas fa-balance-scale-right fa-3x" aria-hidden="true"></i>
 
-                    <div class="title">
-                        <h4>Legal</h4>
+                        <div class="title">
+                            <h4>Legal</h4>
+                        </div>
+
+                        @{
+
+                            var legal = Model
+                                .Where(x => x.Subcat.CatId == 12)
+                                .ToList();
+
+                            for (int i = 0; i < legal.Count; i++)
+                            {
+                                <div class="form-group">
+                                    <label asp-for="@legal[i].SubcatId" class="control-label">@legal[i].Subcat.SubcatName</label>
+                                    <input asp-for="@legal[i].ActualCost" class="form-control" />
+
+                                </div>
+
+                            }
+
+                        }
+
+
                     </div>
-
-                    <div class="text">
-                        <span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam. Assum decore te sed. Elitr scripta ocurreret qui ad.</span>
-                    </div>
-
-                    @*<a href="#">Add New Subcategory</a>*@
-
                 </div>
+
             </div>
-
-
-            <!--<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-
-                <div class="box-part text-center">
-
-
-                    <i class="fas fa-car fa-3x" aria-hidden="true"></i>
-
-                    <div class="title">
-                        <h4>Other</h4>
-                    </div>
-
-                    <div class="text">
-                        <span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam. Assum decore te sed. Elitr scripta ocurreret qui ad.</span>
-                    </div>-->
-
-                    @*<a href="#">Add New Subcategory</a>*@
-
-                <!--</div>
-            </div>-->
-
-        </div>
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-primary mr-2" />
+                <a asp-action="Create" class="btn btn-secondary"><i class="fas fa-arrow-circle-left"></i></a>
+            </div>
+        </form>
     </div>
 </div>
 
@@ -316,57 +456,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-@*<h1>Create</h1>
-
-    <h4>MonthlyCost</h4>
-    <hr />
-    <div class="row">
-        <div class="col-md-4">
-            <form asp-action="Create">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="SubcatId" class="control-label"></label>
-                    <select asp-for="SubcatId" class ="form-control" asp-items="ViewBag.SubcatId"></select>
-                </div>
-                <div class="form-group">
-                    <label asp-for="ProjectedCost" class="control-label"></label>
-                    <input asp-for="ProjectedCost" class="form-control" />
-                    <span asp-validation-for="ProjectedCost" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="ActualCost" class="control-label"></label>
-                    <input asp-for="ActualCost" class="form-control" />
-                    <span asp-validation-for="ActualCost" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Difference" class="control-label"></label>
-                    <input asp-for="Difference" class="form-control" />
-                    <span asp-validation-for="Difference" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="UserId" class="control-label"></label>
-                    <select asp-for="UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" />
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div>
-        <a asp-action="Index">Back to List</a>
-    </div>*@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

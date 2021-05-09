@@ -9,7 +9,8 @@ namespace BudgetTracker.Models
 {
     public partial class MonthlyCost
     {
-        
+        [Key]
+        public int Id { get; set; }
         public int MonthlyCostId { get; set; }
         public int SubcatId { get; set; }
         public int CatId { get; set; }

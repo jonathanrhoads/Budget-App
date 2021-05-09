@@ -25,33 +25,37 @@ namespace BudgetTracker.Controllers
         public async Task<IActionResult> Create()
         {
             var user = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            
-            var budgetContext = _context.MonthlyCosts
-                .Where(p => p.UserId == user)
+
+            var budgetContext = await _context.MonthlyCosts
+                //.Where(p => p.UserId == user)
                 .Include(p => p.Subcat)
-                .Include(p => p.Cat);
-            
-            return View(await budgetContext.ToListAsync());
+                //.Include(p => p.Cat);
+                .ToListAsync();
+
+            return View(budgetContext);
         }
 
         // POST: MonthlyCosts/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("SubcatId,ProjectedCost,ActualCost,Difference,UserId,CatId")] MonthlyCost monthlyCost)
+        public async Task<IActionResult> Create([Bind("SubcatId,ActualCost,Difference,UserId,CatId,Id")] List<MonthlyCost> monthlyCost)
         {
-            
-            if (ModelState.IsValid)
+            for(int i = 0; i < monthlyCost.Count(); i++)
             {
-                monthlyCost.UserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-                _context.Add(monthlyCost);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Create));
+                if (ModelState.IsValid)
+                {
+                    monthlyCost[i].UserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                    _context.Add(monthlyCost);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Create));
+                }
             }
-            //ViewBag.Category = new List<ExpenseCategory>(_context.ExpenseCategories);
-            
-            ViewData["SubcatId"] = new SelectList(_context.Subcats, "SubcatId", "SubcatName", monthlyCost.SubcatId);
-            ViewData["CatId"] = new SelectList(_context.ExpenseCategories, "CatId", "CategoryName", monthlyCost.CatId);
-            return View(monthlyCost);
+
+
+
+            //ViewData["SubcatId"] = new SelectList(_context.Subcats, "SubcatId", "SubcatName", monthlyCostSubcatId);
+            //ViewData["CatId"] = new SelectList(_context.ExpenseCategories, "CatId", "CategoryName", monthlyCost.CatId);
+            return RedirectToAction("Create");
         }
 
         // GET: MonthlyCosts/Edit/5
