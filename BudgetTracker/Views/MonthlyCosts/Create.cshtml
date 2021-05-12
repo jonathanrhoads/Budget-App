@@ -35,6 +35,7 @@
     }
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <div class="box">
     <div class="container">
         <form asp-controller="MonthlyCosts" asp-action="Create" method="post">
@@ -50,6 +51,9 @@
                         <div class="title">
                             <h4>Housing</h4>
                         </div>
+
+                      
+
                         @{
 
                             var cat = Model
@@ -84,9 +88,9 @@
 
                         @{
 
-                            var transportation = Model
-                                .Where(x => x.Subcat.CatId == 2)
-                                .ToList();
+                                var transportation = Model
+                                    .Where(x => x.Subcat.CatId == 2)
+                                    .ToList();
 
                             for (int i = 0; i < transportation.Count; i++)
                             {

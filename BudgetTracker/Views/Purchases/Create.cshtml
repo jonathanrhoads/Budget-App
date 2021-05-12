@@ -3,61 +3,92 @@
 @{
     ViewData["Title"] = "Create";
 }
+<style>
+    /*-------------- Styling for Cards ----------------*/
+
+    body {
+        background: #abd1a8;
+    }
+
+    span {
+        font-size: 15px;
+    }
+
+    .box {
+        padding: 60px 0px;
+    }
+
+    .box-part {
+        background: #FFF;
+        border-radius: 0;
+        padding: 60px 10px;
+        margin: 30px 0px;
+    }
+
+    .text {
+        margin: 20px 0px;
+    }
+
+    .fas {
+        color: #808080;
+    }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 <h1>Input Purchase</h1>
-
-<h4></h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="PurchaseName" class="control-label">Purchase Name:</label>
-                <input asp-for="PurchaseName" class="form-control" />
-                <span asp-validation-for="PurchaseName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Price" class="control-label">Price:</label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PurchaseDate" class="control-label">Date:</label>
-                <input asp-for="PurchaseDate" class="form-control" />
-                <span asp-validation-for="PurchaseDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CatId" class="control-label">Category:</label>
-                <select asp-for="CatId" class="form-control" asp-items="ViewBag.CatId">
-                    
-                </select>
-            </div>
-            <div class="form-group">
-                <label asp-for="PaymentMethodId" class="control-label">Payment Method:</label>
-                <select asp-for="PaymentMethodId" class="form-control" asp-items="ViewBag.PaymentMethodId">
-                    
-                </select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Necessity" class="control-label">
-                    Necessity:
-                    <output class=" m-1" id="rangeInfo">5</output>
-                </label>
-                <input asp-for="Necessity" class="form-control" min="0" max="10" type="range" onchange="rangeInfo.value=value" />
-                <span asp-validation-for="Necessity" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Note" class="control-label">Note:</label>
-                <textarea asp-for="Note" asp-validation-for="Note" id="textarea"
-                          class="materialize-textarea form-control" v-model="Note.text"></textarea>
-                <span asp-validation-for="Note" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Submit" class="btn btn-primary mr-2" />
-                <a asp-action="Index" class="btn btn-secondary"><i class="fas fa-arrow-circle-left"></i></a>
-            </div>
-        </form>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        
+        <div class="box-part text-center">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="PurchaseName" class="control-label">Purchase Name:</label>
+                    <input asp-for="PurchaseName" class="form-control" />
+                    <span asp-validation-for="PurchaseName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Price" class="control-label">Price:</label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PurchaseDate" class="control-label">Date:</label>
+                    <input asp-for="PurchaseDate" class="form-control" />
+                    <span asp-validation-for="PurchaseDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CatId" class="control-label">Category:</label>
+                    <select asp-for="CatId" class="form-control" asp-items="ViewBag.CatId">
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PaymentMethodId" class="control-label">Payment Method:</label>
+                    <select asp-for="PaymentMethodId" class="form-control" asp-items="ViewBag.PaymentMethodId">
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Necessity" class="control-label">
+                        Necessity:
+                        <output class=" m-1" id="rangeInfo">5</output>
+                    </label>
+                    <input asp-for="Necessity" class="form-control" min="0" max="10" type="range" onchange="rangeInfo.value=value" />
+                    <span asp-validation-for="Necessity" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Note" class="control-label">Note:</label>
+                    <textarea asp-for="Note" asp-validation-for="Note" id="textarea"
+                              class="materialize-textarea form-control" v-model="Note.text"></textarea>
+                    <span asp-validation-for="Note" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Submit" class="btn btn-primary mr-2" />
+                    <a asp-action="Index" class="btn btn-secondary"><i class="fas fa-arrow-circle-left"></i></a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 

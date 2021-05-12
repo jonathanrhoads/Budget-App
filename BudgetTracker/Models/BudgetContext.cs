@@ -35,6 +35,7 @@ namespace BudgetTracker.Models
         public virtual DbSet<Purchase> Purchases { get; set; }
         public virtual DbSet<Subcat> Subcats { get; set; }
         public virtual DbSet<ApplicationUser> ApplicationUsers {get; set; }
+        public virtual DbSet<Expenses> Expenses { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -49,6 +50,91 @@ namespace BudgetTracker.Models
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
+
+
+            modelBuilder.Entity<Expenses>(entity =>
+            {
+                entity.HasKey(e => e.ExpenseId);
+                entity.ToTable("Expenses");
+
+                entity.HasIndex(e => e.UserId, "IX_Expenses_ApplicationUserId");
+        
+        
+                entity.Property(e => e.MortgageRent).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.Phone).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.Gas).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.WaterSewerTrash).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.Electricity).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.CableInternet).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.HomeAlarmSystem).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.MaintenanceRepairs).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.VehiclePayment).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.Insurance).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.Fuel).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.UberLyft).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.LicenseRegistration).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.Maintenance).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.HomeRenters).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.Health).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.Dental).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.Vision).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.Pet).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.Life).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.Groceries).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.DiningOut).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.Coffee).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.ClothesShoes).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.SchoolTuitionSupplies).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.SportsOrganizationFees).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.Childcare).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.LunchMoney).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.ToysGames).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.HairCutsSalon).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.ManiPediWaxing).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.ClothesShoesAccessories).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.DryCleaning).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.GymSupplements).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.OrganizationDuesFees).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.Music).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.Video).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.MovieTheater).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.Concerts).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.SportingEvents).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.DateNights).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.Alchohol).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.TobaccoVaping).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.PersonalLoan).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.CreditCard).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.StudentLoan).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.Federal).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.State).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.Medicare).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.SocialSecurityFICA).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.EmergencySavings).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.CDsMoneyMarkets).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.IRA401k).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.StocksMutualFunds).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.Tithesffering).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.Charity).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.RetirementHome).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.Attorney).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.AlimonyChildSupport).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.LienJudgmentPayment).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.MonthlyIncome).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.TotalCost).HasColumnType("decimal(19, 4)");
+                entity.Property(e => e.IncomeVsTotal).HasColumnType("decimal(19, 4)");
+
+                entity.Property(e => e.UserId).HasMaxLength(450);
+
+                entity.HasOne(d => d.ApplicationUser)
+                    .WithMany()
+                    .HasForeignKey(d => d.UserId);
+
+                
+
+            });
+
+
 
             //modelBuilder.Entity<AspNetRole>(entity =>
             //{

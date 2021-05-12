@@ -2,18 +2,51 @@
 
 @{
     ViewData["Title"] = "Summary";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    /*-------------- Styling for Cards ----------------*/
 
+    body {
+        background: #eee;
+    }
+
+    span {
+        font-size: 15px;
+    }
+
+    .box {
+        padding: 60px 0px;
+    }
+
+    .box-part {
+        background: #FFF;
+        border-radius: 0;
+        padding: 60px 10px;
+        margin: 30px 0px;
+    }
+
+    .text {
+        margin: 20px 0px;
+    }
+
+    
+</style>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
     google.charts.load("current", { packages: ["corechart"] });
-    google.charts.setOnLoadCallback(drawChart);
-    function drawChart() {
+    // Load Charts
+    google.charts.setOnLoadCallback(drawPieChart);
+    google.charts.setOnLoadCallback(drawBarGraph);
+    google.charts.setOnLoadCallback(drawScatterChart);
+
+    // Create Charts
+    function drawPieChart() {
 
         $.ajax({
             type: "POST",
-            url: "/Purchases/AjaxMethod",
+            url: "/Purchases/AjaxMethod1",
             data: '{}',
             contentType: "application/json; charset=utf-8",
             dataType: "json",
@@ -22,7 +55,9 @@
 
                 var options = {
                     title: 'Spending by Category',
-                    is3D: true,
+                    is3D: false,
+                    width: 600,
+                    height: 400,
                 };
 
                 var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
@@ -36,8 +71,86 @@
             }
         });
     }
+
+    function drawBarGraph() {
+
+        $.ajax({
+            type: "POST",
+            url: "/Purchases/AjaxMethod2",
+            data: '{}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (r) {
+                var data = new google.visualization.DataTable(r);
+
+                var options = {
+                    title: "Total Spending By Day",
+                    width: 600,
+                    height: 400,
+                    bar: { groupWidth: "50%" },
+                    legend: { position: "none" },
+                    hAxis: {format: 'currency'}
+                };
+                
+
+                var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));
+                chart.draw(data, options);
+            },
+            failure: function (r) {
+                alert(r.d);
+            },
+            error: function (r) {
+                alert(r.d);
+            }
+        });
+    }
+
+    function drawScatterChart() {
+
+        $.ajax({
+            type: "POST",
+            url: "/Purchases/AjaxMethod3",
+            data: '{}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (r) {
+                var data = new google.visualization.DataTable(r);
+
+                var options = {
+                    width: 600,
+                    height: 400,
+                    title: 'Necessity vs. Amount Spent',
+                    hAxis: { title: 'Necessity', minValue: 0, maxValue: 10,  },
+                    vAxis: { title: 'Amount', minValue: 0, format: 'currency'},
+                    legend: 'none'
+                };
+
+
+                var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
+                chart.draw(data, options);
+            },
+            failure: function (r) {
+                alert(r.d);
+            },
+            error: function (r) {
+                alert(r.d);
+            }
+        });
+    }
 </script>
-<div class="container">
-    <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+<div class="box">
+    <div class="container">
+        <div class="flex-row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-3">
+                <div id="piechart_3d"></div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-3">
+                <div id="barchart_values"></div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 m-3">
+                <div id="chart_div"></div>
+            </div>
+        </div>
+    </div>
 </div>
 

@@ -11,6 +11,7 @@ using Google.DataTable.Net.Wrapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System.Security.Claims;
+using System.Data.Entity.Core.Objects;
 
 namespace BudgetTracker.Controllers
 {
@@ -178,17 +179,59 @@ namespace BudgetTracker.Controllers
         }
 
         [HttpPost]
-        public JsonResult AjaxMethod()
+        public JsonResult AjaxMethod1()
         {
             var user = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
             var budgetContext = _context.Purchases
                 .Where(p => p.UserId == user)
-                .Include(p => p.Cat).Include(p => p.PaymentMethod);
+                .Include(p => p.Cat);
+
+            var list = budgetContext.ToList();
+
+            var json = list.ToGoogleDataTable()
+               .NewColumn(new Column(ColumnType.String, "Category"), x => x.Cat.CategoryName)
+               .NewColumn(new Column(ColumnType.Number, "Price"), x => x.Price)
+               .Build()
+               .GetJson();
+
+            return Json(json);
+        }
+
+        [HttpPost]
+        public JsonResult AjaxMethod2()
+        {
+            var user = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            
+            var budgetContext = _context.Purchases
+                .Where(p => p.UserId == user)
+                .Where(p => p.PurchaseDate != null && p.PurchaseDate >= DateTime.Now.AddDays(-7))
+                .Include(p => p.Cat)
+                .Include(p => p.PaymentMethod);
 
             var list = budgetContext.ToList();
             var json = list.ToGoogleDataTable()
-               .NewColumn(new Column(ColumnType.String, "Category"), x => x.Cat.CategoryName)
+               .NewColumn(new Column(ColumnType.Date, "Date"), x => x.PurchaseDate)
+               .NewColumn(new Column(ColumnType.Number, "Price"), x => x.Price)
+               .Build()
+               .GetJson();
+
+            return Json(json);
+        }
+
+        [HttpPost]
+        public JsonResult AjaxMethod3()
+        {
+            var user = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            var budgetContext = _context.Purchases
+                .Where(p => p.UserId == user)
+                .Include(p => p.Cat)
+                .Include(p => p.PaymentMethod);
+
+            var list = budgetContext.ToList();
+            var json = list.ToGoogleDataTable()
+               .NewColumn(new Column(ColumnType.Number, "Necessity"), x => x.Necessity)
                .NewColumn(new Column(ColumnType.Number, "Price"), x => x.Price)
                .Build()
                .GetJson();
@@ -201,7 +244,13 @@ namespace BudgetTracker.Controllers
             
             return View();
         }
-
+         
         
+    }
+
+    public class CatPrice
+    {
+        public string CatName { get; set; }
+        public decimal Spent { get; set; }
     }
 }

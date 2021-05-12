@@ -1,0 +1,584 @@
+﻿@model BudgetTracker.Models.Expenses
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    /*-------------- Styling for Cards ----------------*/
+
+    body {
+        background: #abd1a8;
+    }
+
+    span {
+        font-size: 15px;
+    }
+
+    .box {
+        padding: 60px 0px;
+    }
+
+    .box-part {
+        background: #FFF;
+        border-radius: 0;
+        padding: 60px 10px;
+        margin: 30px 0px;
+    }
+
+    .text {
+        margin: 20px 0px;
+    }
+
+    .fas {
+        color: #808080;
+    }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <h1>Create</h1>
+
+    <h4>Expenses</h4>
+    <hr />
+
+    <div class="box">
+        <div class="container">
+
+
+            <form asp-action="Create">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+                        <div class="box-part text-center">
+
+
+                            <i class="fas fa-house-user fa-3x" aria-hidden="true"></i>
+
+                            <div class="title">
+                                <h4>Housing</h4>
+                            </div>
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <div class="form-group">
+                                <label asp-for="MortgageRent" class="control-label"></label>
+                                <input asp-for="MortgageRent" class="form-control" />
+                                <span asp-validation-for="MortgageRent" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Phone" class="control-label"></label>
+                                <input asp-for="Phone" class="form-control" />
+                                <span asp-validation-for="Phone" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Gas" class="control-label"></label>
+                                <input asp-for="Gas" class="form-control" />
+                                <span asp-validation-for="Gas" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="WaterSewerTrash" class="control-label"></label>
+                                <input asp-for="WaterSewerTrash" class="form-control" />
+                                <span asp-validation-for="WaterSewerTrash" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Electricity" class="control-label"></label>
+                                <input asp-for="Electricity" class="form-control" />
+                                <span asp-validation-for="Electricity" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="CableInternet" class="control-label"></label>
+                                <input asp-for="CableInternet" class="form-control" />
+                                <span asp-validation-for="CableInternet" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="HomeAlarmSystem" class="control-label"></label>
+                                <input asp-for="HomeAlarmSystem" class="form-control" />
+                                <span asp-validation-for="HomeAlarmSystem" class="text-danger"></span>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label asp-for="MaintenanceRepairs" class="control-label"></label>
+                                <input asp-for="MaintenanceRepairs" class="form-control" />
+                                <span asp-validation-for="MaintenanceRepairs" class="text-danger"></span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+                        <div class="box-part text-center">
+
+
+                            <i class="fas fa-car fa-3x" aria-hidden="true"></i>
+
+                            <div class="title">
+                                <h4>Transportation</h4>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="VehiclePayment" class="control-label"></label>
+                                <input asp-for="VehiclePayment" class="form-control" />
+                                <span asp-validation-for="VehiclePayment" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Insurance" class="control-label"></label>
+                                <input asp-for="Insurance" class="form-control" />
+                                <span asp-validation-for="Insurance" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Fuel" class="control-label"></label>
+                                <input asp-for="Fuel" class="form-control" />
+                                <span asp-validation-for="Fuel" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="UberLyft" class="control-label"></label>
+                                <input asp-for="UberLyft" class="form-control" />
+                                <span asp-validation-for="UberLyft" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="LicenseRegistration" class="control-label"></label>
+                                <input asp-for="LicenseRegistration" class="form-control" />
+                                <span asp-validation-for="LicenseRegistration" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Maintenance" class="control-label"></label>
+                                <input asp-for="Maintenance" class="form-control" />
+                                <span asp-validation-for="Maintenance" class="text-danger"></span>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+                        <div class="box-part text-center">
+
+
+                            <i class="fas fa-house-damage fa-3x" aria-hidden="true"></i>
+
+                            <div class="title">
+                                <h4>Insurance</h4>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="HomeRenters" class="control-label"></label>
+                                <input asp-for="HomeRenters" class="form-control" />
+                                <span asp-validation-for="HomeRenters" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Health" class="control-label"></label>
+                                <input asp-for="Health" class="form-control" />
+                                <span asp-validation-for="Health" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Dental" class="control-label"></label>
+                                <input asp-for="Dental" class="form-control" />
+                                <span asp-validation-for="Dental" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Vision" class="control-label"></label>
+                                <input asp-for="Vision" class="form-control" />
+                                <span asp-validation-for="Vision" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Pet" class="control-label"></label>
+                                <input asp-for="Pet" class="form-control" />
+                                <span asp-validation-for="Pet" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Life" class="control-label"></label>
+                                <input asp-for="Life" class="form-control" />
+                                <span asp-validation-for="Life" class="text-danger"></span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+                        <div class="box-part text-center">
+
+
+                            <i class="fas fa-utensils fa-3x" aria-hidden="true"></i>
+
+                            <div class="title">
+                                <h4>Food</h4>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label asp-for="Groceries" class="control-label"></label>
+                                <input asp-for="Groceries" class="form-control" />
+                                <span asp-validation-for="Groceries" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="DiningOut" class="control-label"></label>
+                                <input asp-for="DiningOut" class="form-control" />
+                                <span asp-validation-for="DiningOut" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Coffee" class="control-label"></label>
+                                <input asp-for="Coffee" class="form-control" />
+                                <span asp-validation-for="Coffee" class="text-danger"></span>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+                        <div class="box-part text-center">
+
+
+                            <i class="fas fa-baby fa-3x" aria-hidden="true"></i>
+
+                            <div class="title">
+                                <h4>Children</h4>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="ClothesShoes" class="control-label"></label>
+                                <input asp-for="ClothesShoes" class="form-control" />
+                                <span asp-validation-for="ClothesShoes" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="SchoolTuitionSupplies" class="control-label"></label>
+                                <input asp-for="SchoolTuitionSupplies" class="form-control" />
+                                <span asp-validation-for="SchoolTuitionSupplies" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="SportsOrganizationFees" class="control-label"></label>
+                                <input asp-for="SportsOrganizationFees" class="form-control" />
+                                <span asp-validation-for="SportsOrganizationFees" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Childcare" class="control-label"></label>
+                                <input asp-for="Childcare" class="form-control" />
+                                <span asp-validation-for="Childcare" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="LunchMoney" class="control-label"></label>
+                                <input asp-for="LunchMoney" class="form-control" />
+                                <span asp-validation-for="LunchMoney" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ToysGames" class="control-label"></label>
+                                <input asp-for="ToysGames" class="form-control" />
+                                <span asp-validation-for="ToysGames" class="text-danger"></span>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+                        <div class="box-part text-center">
+
+
+                            <i class="fas fa-tshirt fa-3x" aria-hidden="true"></i>
+
+                            <div class="title">
+                                <h4>Personal Care</h4>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label asp-for="HairCutsSalon" class="control-label"></label>
+                                <input asp-for="HairCutsSalon" class="form-control" />
+                                <span asp-validation-for="HairCutsSalon" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ManiPediWaxing" class="control-label"></label>
+                                <input asp-for="ManiPediWaxing" class="form-control" />
+                                <span asp-validation-for="ManiPediWaxing" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="ClothesShoesAccessories" class="control-label"></label>
+                                <input asp-for="ClothesShoesAccessories" class="form-control" />
+                                <span asp-validation-for="ClothesShoesAccessories" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="DryCleaning" class="control-label"></label>
+                                <input asp-for="DryCleaning" class="form-control" />
+                                <span asp-validation-for="DryCleaning" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="GymSupplements" class="control-label"></label>
+                                <input asp-for="GymSupplements" class="form-control" />
+                                <span asp-validation-for="GymSupplements" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="OrganizationDuesFees" class="control-label"></label>
+                                <input asp-for="OrganizationDuesFees" class="form-control" />
+                                <span asp-validation-for="OrganizationDuesFees" class="text-danger"></span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+                        <div class="box-part text-center">
+
+
+                            <i class="fas fa-glass-cheers fa-3x" aria-hidden="true"></i>
+
+                            <div class="title">
+                                <h4>Entertainment</h4>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Music" class="control-label"></label>
+                                <input asp-for="Music" class="form-control" />
+                                <span asp-validation-for="Music" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Video" class="control-label"></label>
+                                <input asp-for="Video" class="form-control" />
+                                <span asp-validation-for="Video" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="MovieTheater" class="control-label"></label>
+                                <input asp-for="MovieTheater" class="form-control" />
+                                <span asp-validation-for="MovieTheater" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Concerts" class="control-label"></label>
+                                <input asp-for="Concerts" class="form-control" />
+                                <span asp-validation-for="Concerts" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="SportingEvents" class="control-label"></label>
+                                <input asp-for="SportingEvents" class="form-control" />
+                                <span asp-validation-for="SportingEvents" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="DateNights" class="control-label"></label>
+                                <input asp-for="DateNights" class="form-control" />
+                                <span asp-validation-for="DateNights" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Alchohol" class="control-label"></label>
+                                <input asp-for="Alchohol" class="form-control" />
+                                <span asp-validation-for="Alchohol" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="TobaccoVaping" class="control-label"></label>
+                                <input asp-for="TobaccoVaping" class="form-control" />
+                                <span asp-validation-for="TobaccoVaping" class="text-danger"></span>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+                        <div class="box-part text-center">
+
+
+                            <i class="fas fa-money-check-alt fa-3x" aria-hidden="true"></i>
+
+                            <div class="title">
+                                <h4>Loans</h4>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label asp-for="PersonalLoan" class="control-label"></label>
+                                <input asp-for="PersonalLoan" class="form-control" />
+                                <span asp-validation-for="PersonalLoan" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="CreditCard" class="control-label"></label>
+                                <input asp-for="CreditCard" class="form-control" />
+                                <span asp-validation-for="CreditCard" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="StudentLoan" class="control-label"></label>
+                                <input asp-for="StudentLoan" class="form-control" />
+                                <span asp-validation-for="StudentLoan" class="text-danger"></span>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+                        <div class="box-part text-center">
+
+
+                            <i class="fas fa-receipt fa-3x" aria-hidden="true"></i>
+
+                            <div class="title">
+                                <h4>Taxes</h4>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Federal" class="control-label"></label>
+                                <input asp-for="Federal" class="form-control" />
+                                <span asp-validation-for="Federal" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="State" class="control-label"></label>
+                                <input asp-for="State" class="form-control" />
+                                <span asp-validation-for="State" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Medicare" class="control-label"></label>
+                                <input asp-for="Medicare" class="form-control" />
+                                <span asp-validation-for="Medicare" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="SocialSecurityFICA" class="control-label"></label>
+                                <input asp-for="SocialSecurityFICA" class="form-control" />
+                                <span asp-validation-for="SocialSecurityFICA" class="text-danger"></span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+                        <div class="box-part text-center">
+
+
+                            <i class="fas fa-wallet fa-3x" aria-hidden="true"></i>
+
+                            <div class="title">
+                                <h4>Savings and Investments</h4>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label asp-for="EmergencySavings" class="control-label"></label>
+                                <input asp-for="EmergencySavings" class="form-control" />
+                                <span asp-validation-for="EmergencySavings" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="CDsMoneyMarkets" class="control-label"></label>
+                                <input asp-for="CDsMoneyMarkets" class="form-control" />
+                                <span asp-validation-for="CDsMoneyMarkets" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="IRA401k" class="control-label"></label>
+                                <input asp-for="IRA401k" class="form-control" />
+                                <span asp-validation-for="IRA401k" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="StocksMutualFunds" class="control-label"></label>
+                                <input asp-for="StocksMutualFunds" class="form-control" />
+                                <span asp-validation-for="StocksMutualFunds" class="text-danger"></span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+                        <div class="box-part text-center">
+
+
+                            <i class="fas fa-gift fa-3x" aria-hidden="true"></i>
+
+                            <div class="title">
+                                <h4>Gifts and Donations</h4>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label asp-for="Tithesffering" class="control-label"></label>
+                                <input asp-for="Tithesffering" class="form-control" />
+                                <span asp-validation-for="Tithesffering" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Charity" class="control-label"></label>
+                                <input asp-for="Charity" class="form-control" />
+                                <span asp-validation-for="Charity" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="RetirementHome" class="control-label"></label>
+                                <input asp-for="RetirementHome" class="form-control" />
+                                <span asp-validation-for="RetirementHome" class="text-danger"></span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+                        <div class="box-part text-center">
+
+
+                            <i class="fas fa-balance-scale-right fa-3x" aria-hidden="true"></i>
+
+                            <div class="title">
+                                <h4>Legal</h4>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="Attorney" class="control-label"></label>
+                                <input asp-for="Attorney" class="form-control" />
+                                <span asp-validation-for="Attorney" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="AlimonyChildSupport" class="control-label"></label>
+                                <input asp-for="AlimonyChildSupport" class="form-control" />
+                                <span asp-validation-for="AlimonyChildSupport" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="LienJudgmentPayment" class="control-label"></label>
+                                <input asp-for="LienJudgmentPayment" class="form-control" />
+                                <span asp-validation-for="LienJudgmentPayment" class="text-danger"></span>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+                        <div class="box-part text-center">
+
+
+                            <i class="fas fa-thumbs-o-up fa-3x" aria-hidden="true"></i>
+
+                            <div class="title">
+                                <h4>Totals</h4>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="MonthlyIncome" class="control-label"></label>
+                                <input asp-for="MonthlyIncome" class="form-control" />
+                                <span asp-validation-for="MonthlyIncome" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Create" class="btn btn-primary" />
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+
+<div>
+    <a asp-action="Index" class="btn btn-secondary"><i class="fas fa-arrow-circle-left"></i></a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
