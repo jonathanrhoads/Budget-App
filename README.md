@@ -90,7 +90,7 @@ The purpose of the app is to help individuals overview their spending to make be
 | 6       | 3			   | Type in values then check database for saved values/Unit Test | Tested | 05-10-2021 | 0.1 |
 | 7       | 3.1			   | Unit Test	    | Tested     | 05-10-2021 | 0.1          |
 | 8       | 3.2			   | Check DB for values | Tested     | 05-13-2021 | 0.1     |
-| 9       | 3.3			   | Unit Test      | Tested     | 00-00-0000 | 0.1          |
+| 9       | 3.3			   | Unit Test      | Not Tested     | 00-00-0000 | 0.1          |
 | 10      | 4			   | Log in and out | Tested     | 05-13-2021 | 0.1          |
 | 11      | 4.1			   | Unit Test/Manual verification | Tested  | 05-13-2021 | 0.1|
 
