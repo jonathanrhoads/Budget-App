@@ -83,16 +83,16 @@ The purpose of the app is to help individuals overview their spending to make be
 | Test ID | Requirement ID | Test Procedure | Current Status | TimeStamp | Build/Version |
 |---------|----------------|----------------|----------------|-----------|---------------|
 | 1       | 1			   | Unit Test      | Not Tested     | 00-00-0000 | 0.1          |
-| 2       | 1.2			   | View the DB    | Not Tested     | 05-10-2021 | 0.1          |
+| 2       | 1.2			   | View the DB    | Tested     | 05-10-2021 | 0.1          |
 | 3       | 1.3			   | Unit Test	    | Not Tested     | 00-00-0000 | 0.1          |
-| 4       | 2			   | View Charts | Not Tested     | 05-10-2021 | 0.1          |
+| 4       | 2			   | View Charts | Tested     | 05-10-2021 | 0.1          |
 | 5       | 2.1			   | Check each filter for accuracy on purchase list/Unit Test | Not Tested | 00-00-0000 | 0.1 |
-| 6       | 3			   | Type in values then check database for saved values/Unit Test | Not Tested | 05-10-2021 | 0.1 |
-| 7       | 3.1			   | Unit Test	    | Not Tested     | 05-10-2021 | 0.1          |
-| 8       | 3.2			   | Check DB for values | Not Tested     | 05-13-2021 | 0.1     |
-| 9       | 3.3			   | Unit Test      | Not Tested     | 00-00-0000 | 0.1          |
-| 10      | 4			   | Log in and out | Not Tested     | 05-13-2021 | 0.1          |
-| 11      | 4.1			   | Unit Test/Manual verification | Not Tested     | 05-13-2021 | 0.1|
+| 6       | 3			   | Type in values then check database for saved values/Unit Test | Tested | 05-10-2021 | 0.1 |
+| 7       | 3.1			   | Unit Test	    | Tested     | 05-10-2021 | 0.1          |
+| 8       | 3.2			   | Check DB for values | Tested     | 05-13-2021 | 0.1     |
+| 9       | 3.3			   | Unit Test      | Tested     | 00-00-0000 | 0.1          |
+| 10      | 4			   | Log in and out | Tested     | 05-13-2021 | 0.1          |
+| 11      | 4.1			   | Unit Test/Manual verification | Tested  | 05-13-2021 | 0.1|
 
 
 ## Database Diagram
