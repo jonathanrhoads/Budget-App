@@ -124,6 +124,7 @@ namespace BudgetTracker.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ExpenseId,UserId,MortgageRent,Phone,Gas,WaterSewerTrash,Electricity,CableInternet,HomeAlarmSystem,MaintenanceRepairs,VehiclePayment,Insurance,Fuel,UberLyft,LicenseRegistration,Maintenance,HomeRenters,Health,Dental,Vision,Pet,Life,Groceries,DiningOut,Coffee,ClothesShoes,SchoolTuitionSupplies,SportsOrganizationFees,Childcare,LunchMoney,ToysGames,HairCutsSalon,ManiPediWaxing,ClothesShoesAccessories,DryCleaning,GymSupplements,OrganizationDuesFees,Music,Video,MovieTheater,Concerts,SportingEvents,DateNights,Alchohol,TobaccoVaping,PersonalLoan,CreditCard,StudentLoan,Federal,State,Medicare,SocialSecurityFICA,EmergencySavings,CDsMoneyMarkets,IRA401k,StocksMutualFunds,Tithesffering,Charity,RetirementHome,Attorney,AlimonyChildSupport,LienJudgmentPayment,MonthlyIncome,TotalCost,IncomeVsTotal")] Expenses expenses)
         {
+            expenses.ExpenseId = id;
             if (id != expenses.ExpenseId)
             {
                 return NotFound();
@@ -133,6 +134,8 @@ namespace BudgetTracker.Controllers
             {
                 try
                 {
+                    
+                    expenses.UserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
                     expenses.TotalCost = expenses.MortgageRent + expenses.Phone + expenses.Gas + expenses.WaterSewerTrash +
                         expenses.Electricity + expenses.CableInternet +
                         expenses.HomeAlarmSystem + expenses.MaintenanceRepairs + expenses.VehiclePayment + expenses.Insurance +
